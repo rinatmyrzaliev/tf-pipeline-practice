@@ -1,0 +1,39 @@
+{
+  "Version": "2012-10-17",
+  "Statement": [
+    {
+      "Sid": "StateObject",
+      "Effect": "Allow",
+      "Action": ["s3:GetObject", "s3:PutObject", "s3:DeleteObject"],
+      "Resource": "arn:aws:s3:::tf-state-rinat-practice/pipeline-practice/*"
+    },
+    {
+      "Sid": "StateBucketList",
+      "Effect": "Allow",
+      "Action": ["s3:ListBucket"],
+      "Resource": "arn:aws:s3:::tf-state-rinat-practice"
+    },
+    {
+      "Sid": "LockTable",
+      "Effect": "Allow",
+      "Action": ["dynamodb:GetItem", "dynamodb:PutItem", "dynamodb:DeleteItem"],
+      "Resource": "arn:aws:dynamodb:us-east-1:517121893325:table/tf-state-lock"
+    },
+    {
+      "Sid": "SsmParam",
+      "Effect": "Allow",
+      "Action": [
+        "ssm:GetParameter", "ssm:GetParameters", "ssm:PutParameter",
+        "ssm:DeleteParameter", "ssm:AddTagsToResource",
+        "ssm:RemoveTagsFromResource", "ssm:ListTagsForResource"
+      ],
+      "Resource": "arn:aws:ssm:us-east-1:517121893325:parameter/pipeline-practice/demo"
+    },
+    {
+      "Sid": "SsmDescribe",
+      "Effect": "Allow",
+      "Action": "ssm:DescribeParameters",
+      "Resource": "*"
+    }
+  ]
+}
